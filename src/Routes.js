@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import AboutPage from './Pages/AboutPage';
 import GalleryPage from './Pages/GalleryPage';
@@ -7,7 +7,7 @@ import LayoutContainer from './Containers/LayoutContainer';
 
 const Routes = () => {
     return(
-        <Router>
+        <HashRouter>
             <Switch>
                 <LayoutContainer>
                     <Route exact path="/" component={HomePage}/>
@@ -15,7 +15,7 @@ const Routes = () => {
                     <Route exact path="/gallery" component={GalleryPage}/>
                 </LayoutContainer>
             </Switch>
-        </Router>
+        </HashRouter>
     );
 };
 

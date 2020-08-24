@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import NavBarComponent from '../Components/NavBarComponent';
 import DrawerComponent from '../Components/DrawerComponent';
 
@@ -16,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 const MainContainer = props => {
+    const history = useHistory();
     const classes = useStyles();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +34,14 @@ const MainContainer = props => {
                 <DrawerComponent variant='permanent' open={true}/>
             </Hidden>
             <Hidden mdUp>
-                <DrawerComponent variant='temporary' open={isOpen} onClose={() => handleDrawer()}/>
+                <DrawerComponent 
+                    variant='temporary' 
+                    open={isOpen} 
+                    onClose={() => handleDrawer()}
+                    onClickHome={() => handleDrawer()}
+                    onClickAbout={() => handleDrawer()}
+                    onClickGallery={() => handleDrawer()}
+                />
             </Hidden>
             <div className={classes.content}>
                 <div className={classes.toolbar}></div>

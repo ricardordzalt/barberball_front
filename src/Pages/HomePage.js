@@ -1,13 +1,11 @@
 import React from 'react';
-import MainContainer from '../Containers/MainContainer';
+import HomeContainer from '../Containers/HomeContainer';
 
 
 const HomePage = () => {
 
      return(
-         <div>
-             <MainContainer/>
-         </div>
+        <HomeContainer/>
      );
 };
 
