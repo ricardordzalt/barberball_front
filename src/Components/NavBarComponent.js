@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, makeStyles, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, SportsBaseball as SportsBaseballIcon } from '@material-ui/icons';
+import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, SportsBaseball as SportsBaseballIcon, PersonAdd as PersonAddIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -21,6 +22,11 @@ const useStyles = makeStyles(theme => ({
             width: `calc(100% - 240px)`,
             marginLeft: 240
         }
+    },
+    sessionLinks: {
+        color: '#000000',
+        textDecoration: 'none',
+        padding: 10
     }
 }));
 
@@ -56,7 +62,7 @@ const NavBarComponent = props => {
                     Barber Ball
                     <SportsBaseballIcon/>
                 </Typography>
-                {auth && (
+                {auth ? (
                     <div>
                         <IconButton edge='end' color='inherit' aria-label='account' onClick={e => handleChangeMenu(e)}>
                             <AccountCircleIcon fontSize='large'/>
@@ -77,6 +83,29 @@ const NavBarComponent = props => {
                         >
                             <MenuItem onClick={() => handleProfileItem()}>Mi Perfil</MenuItem>
                             <MenuItem onClick={() => handleLogoutItem()}>Cerrar Sesión</MenuItem>
+                        </Menu>
+                    </div>
+                ) : (
+                    <div>
+                        <IconButton edge='end' color='inherit' aria-label='account' onClick={e => handleChangeMenu(e)}>
+                            <PersonAddIcon fontSize='large'/>
+                        </IconButton>
+                        <Menu
+                            open={isOpen}
+                            anchorEl={anchorEl}
+                            onClose={e => handleChangeMenu(e)}
+                            anchorOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                            }}
+                        >
+                            <MenuItem><Link className={classes.sessionLinks} to='/login'>Iniciar Sesión</Link></MenuItem>
+                            <MenuItem><Link className={classes.sessionLinks} to='/register'>Registrarse</Link></MenuItem>
                         </Menu>
                     </div>
                 )}
