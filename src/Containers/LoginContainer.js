@@ -39,7 +39,7 @@ const LoginContainer = () => {
                 const response = await axios.post(`${PATH}/login/google`, payload);
                 console.log('response', response.data);
             }catch(err) {
-                console.log('err', err);
+                console.log('err', err.response.data);
             };
         };
     };
